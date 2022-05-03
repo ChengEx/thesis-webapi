@@ -5,8 +5,8 @@ const CustomerSchema = mongoose.Schema({
     lastName: String,
     email: String,
     password: String,
+    phone:Number,
     address:{
-        country:String,
         city:String,
         street:String
     },
@@ -16,6 +16,6 @@ const CustomerSchema = mongoose.Schema({
     }
 });
 
-const PostMessage = mongoose.model('Customer',CustomerSchema);
+const PostMessage = mongoose.model('customers',CustomerSchema);
 
 export default PostMessage;
