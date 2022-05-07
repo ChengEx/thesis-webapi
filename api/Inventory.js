@@ -2,7 +2,7 @@ import mongoose  from 'mongoose';
 import inventoryModel  from '../model/Inventory.js';
 
 
-export const getInventory = async(req, res)=> {
+export const getInventories = async(req, res)=> {
     try{
         const InventoryData = await inventoryModel.find();
         // console.log(InventoryData);

@@ -1,10 +1,10 @@
-const mongoose = require("mongoose")
+import mongoose from 'mongoose';
 
 const CustomerSchema = mongoose.Schema({
-    firstName: String,
-    lastName: String,
     email: String,
     password: String,
+    firstName: String,
+    lastName: String,
     phone:Number,
     address:{
         city:String,
@@ -16,6 +16,6 @@ const CustomerSchema = mongoose.Schema({
     }
 });
 
-const PostMessage = mongoose.model('customers',CustomerSchema);
+const Customer = mongoose.model('customers',CustomerSchema);
 
-export default PostMessage;
+export default Customer;
