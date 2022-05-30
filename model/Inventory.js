@@ -2,6 +2,7 @@ import mongoose from "mongoose"
 
 const InventorySchema = new mongoose.Schema({
     name: String,
+    identity: String,
     categories:[String],
     productDetail:{
         price:{
@@ -10,11 +11,12 @@ const InventorySchema = new mongoose.Schema({
         },
         quantity: Number,
         options:{
-            size:{
-                S: Number,
-                M: Number,
-                L: Number
-            },
+            allsize:[
+                {
+                    size:String,
+                    sizequantity:Number
+                }   
+            ],
             image:String
         }
     }

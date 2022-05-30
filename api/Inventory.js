@@ -14,7 +14,7 @@ export const getInventories = async(req, res)=> {
               image: item.productDetail.options.image,
               price: item.productDetail.price.base
             };
-          });
+        });
           //console.log(returnData);
         res.status(200).json(returnData);
     }catch(err){
@@ -27,6 +27,19 @@ export const getInventoryById = async(req, res) => {
         //console.log(req);
         const { id: _id } = req.params
         const InventoryDataById = await inventoryModel.findById(_id);
+        // if(InventoryData){
+        //     const returnData = InventoryData.map(item => {
+        //         return {
+        //         _id: item._id,
+        //         name: item.name,
+        //         categories: item.categories,
+        //         image: item.productDetail.options.image,
+        //         price: item.productDetail.price.base
+        //         };
+        //     });
+        //     res.status(200).json(returnData);
+        // }
+        //console.log(InventoryDataById);
         res.status(200).json(InventoryDataById);
     }catch(err){
         res.status(404).json({message: err.message });
@@ -43,8 +56,54 @@ export const addInventories = async(req, res) => {
     }
 }
 
-export const getInventoriesByCategories = async(req, res)=> {
+export const getInventoriesByCategories = async(req, res)=> { 
     console.log(req.params);
+    const { category: identity, type: type } = req.params;
+    // inventoryModel.find({ gender: gender}, function (err, docs) { 
+    //     if (err){ 
+    //         console.log(err); 
+    //     }else{ 
+    //         console.log("First function call:", docs); 
+    //     } 
+    // }); 
+    if(type==='default'){
+        inventoryModel.find({'identity': identity}, function (err, docs) { 
+            if (err){ 
+                console.log(err); 
+            }else{ 
+                console.log(docs);
+                const returnData = docs.map(item => {
+                    return {
+                      _id: item._id,
+                      name: item.name,
+                      categories: item.categories,
+                      image: item.productDetail.options.image,
+                      price: item.productDetail.price.base
+                    };
+                  });
+                res.status(201).json(returnData);
+            } 
+        }); 
+    }else{
+        inventoryModel.find({'identity': identity,'categories': [type]}, function (err, docs) { 
+            if (err){ 
+                console.log(err); 
+            }else{ 
+                console.log(docs);
+                const returnData = docs.map(item => {
+                    return {
+                      _id: item._id,
+                      name: item.name,
+                      categories: item.categories,
+                      image: item.productDetail.options.image,
+                      price: item.productDetail.price.base
+                    };
+                  });
+                res.status(201).json(returnData);
+            } 
+        }); 
+   }
+    
 }
 
 //export const getNewestInventories = async(req, res)=> {}
