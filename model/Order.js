@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+import mongoose from 'mongoose';
 
 const OrderSchema = mongoose.Schema({
     customer_id: String,
@@ -7,15 +7,10 @@ const OrderSchema = mongoose.Schema({
     status: String,
     items: [
         {
-            productid: String,
-            quantity: Number,
-            Price: Number,
-            discount: Number,
-            tax: Number,
-            totalPrice: Number
-        }
+            cartid: String   
+        }    
     ],
 })
 
-const Order = mongoose.model('Order',OrderSchema);
-module.exports = Order;
+const Order = mongoose.model('orders',OrderSchema);
+export default Order;

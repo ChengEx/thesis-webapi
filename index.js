@@ -6,6 +6,7 @@ import dotenv from 'dotenv'
 import InventoryRoute from'./api_routes/Inventory.js'
 import CustomerRoute from './api_routes/Customer.js'
 import CategoryRoute from './api_routes/Category.js'
+import CartRoute from './api_routes/Cart.js'
 
 const app = express();
 dotenv.config();
@@ -17,6 +18,7 @@ app.use(cors());
 app.use('/Inventory', InventoryRoute);
 app.use('/Customer', CustomerRoute);
 app.use('/Category', CategoryRoute);
+app.use('/Cart', CartRoute);
 // app.use('/user',userRoutes);
 
 

@@ -13,7 +13,11 @@ const CustomerSchema = mongoose.Schema({
     shippingAddress:{
         city:String,
         street:String
-    }
+    },
+    // cartItem:{
+    //     type: mongoose.Types.ObjectId,
+    //     ref: "carts"
+    // }
 });
 
 const Customer = mongoose.model('customers',CustomerSchema);
