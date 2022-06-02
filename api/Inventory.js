@@ -57,51 +57,68 @@ export const addInventories = async(req, res) => {
 }
 
 export const getInventoriesByCategories = async(req, res)=> { 
-    console.log(req.params);
+    //console.log(req.params);
     const { category: identity, type: type } = req.params;
-    // inventoryModel.find({ gender: gender}, function (err, docs) { 
-    //     if (err){ 
-    //         console.log(err); 
-    //     }else{ 
-    //         console.log("First function call:", docs); 
-    //     } 
-    // }); 
+
     if(type==='default'){
-        inventoryModel.find({'identity': identity}, function (err, docs) { 
-            if (err){ 
-                console.log(err); 
-            }else{ 
-                console.log(docs);
-                const returnData = docs.map(item => {
-                    return {
-                      _id: item._id,
-                      name: item.name,
-                      categories: item.categories,
-                      image: item.productDetail.options.image,
-                      price: item.productDetail.price.base
-                    };
-                  });
-                res.status(201).json(returnData);
-            } 
-        }); 
+        // inventoryModel.find({'identity': identity}, function (err, docs) { 
+        //     if (err){ 
+        //         console.log(err); 
+        //     }else{ 
+        //         const returnData = docs.map(item => {
+        //             return {
+        //               _id: item._id,
+        //               name: item.name,
+        //               categories: item.categories,
+        //               image: item.productDetail.options.image,
+        //               price: item.productDetail.price.base
+        //             };
+        //           });
+        //         res.status(201).json(returnData);
+        //     } 
+        // }); 
+        await inventoryModel.find({'identity': identity}).then((docs) =>{
+            const returnData = docs.map(item => {
+                return {
+                  _id: item._id,
+                  name: item.name,
+                  categories: item.categories,
+                  image: item.productDetail.options.image,
+                  price: item.productDetail.price.base
+                };
+              });
+            res.status(201).json(returnData);
+        });
     }else{
-        inventoryModel.find({'identity': identity,'categories': [type]}, function (err, docs) { 
-            if (err){ 
-                console.log(err); 
-            }else{ 
-                console.log(docs);
-                const returnData = docs.map(item => {
-                    return {
-                      _id: item._id,
-                      name: item.name,
-                      categories: item.categories,
-                      image: item.productDetail.options.image,
-                      price: item.productDetail.price.base
-                    };
-                  });
-                res.status(201).json(returnData);
-            } 
-        }); 
+        // inventoryModel.find({'identity': identity,'categories': [type]}, function (err, docs) { 
+        //     if (err){ 
+        //         console.log(err); 
+        //     }else{ 
+        //         console.log(docs);
+        //         const returnData = docs.map(item => {
+        //             return {
+        //               _id: item._id,
+        //               name: item.name,
+        //               categories: item.categories,
+        //               image: item.productDetail.options.image,
+        //               price: item.productDetail.price.base
+        //             };
+        //           });
+        //         res.status(201).json(returnData);
+        //     } 
+        // }); 
+        await inventoryModel.find({'identity': identity,'categories': [type]}).then((docs)=> {
+            const returnData = docs.map(item => {
+                return {
+                  _id: item._id,
+                  name: item.name,
+                  categories: item.categories,
+                  image: item.productDetail.options.image,
+                  price: item.productDetail.price.base
+                };
+              });
+            res.status(201).json(returnData);
+        })
    }
     
 }

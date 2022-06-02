@@ -24,7 +24,9 @@ const auth = async (req, res, next) => {
       next();
   }
   } catch (error) {
-    console.log(error);
+    //console.log(error);
+    res.status(404).json({message: "請重新登入" });
+    
   }
 };
 
