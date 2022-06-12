@@ -17,7 +17,8 @@ const InventorySchema = new mongoose.Schema({
                     sizequantity:Number
                 }   
             ],
-            image:String
+            image:String,
+            otherimage:[String]
         }
     }
     

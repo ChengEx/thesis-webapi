@@ -9,5 +9,5 @@ router.get('/:id',getInventoryById);
 router.get('/:category/:type', getInventoriesByCategories);
 router.post('/',addInventories);
 
-
+//
 export default router;
